@@ -4,7 +4,7 @@ This repository contains the front-end implementation of the MyGameStore project
 
 This project was implemented using ReactJS and the Material UI library. You can find details about the back-end implementation [here](https://github.com/marcosmatasousa/mygamesstore-backend).
 
-# How to run:
+## How to run:
 
 - Make sure you have NodeJS installed on your machine.
 - Run `npm install` to install the project dependencies.
