@@ -1,8 +1,5 @@
-# React + Vite
+# MyGameStore Front-End
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the front-end implementation of the MyGameStore project, which I built to reinforce and practice concepts of ReactJS and ExpressJS.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project was implemented using ReactJS and the Material UI library. You can find details about the back-end implementation [here](https://github.com/marcosmatasousa/mygamesstore-backend)
