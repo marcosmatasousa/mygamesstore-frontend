@@ -1,0 +1,32 @@
+html, body {
+  font-size: 16px;
+  font-family: Inter;
+}
+
+:root {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #151D27;
+
+}
+
+a {
+  font-weight: 500;
+  color: white;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: white;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
