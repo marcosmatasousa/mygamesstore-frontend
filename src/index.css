@@ -1,12 +1,12 @@
-html, body {
+html,
+body {
   font-size: 16px;
-  font-family: Inter;
+  font-family: "Inter";
 }
 
 :root {
   color: rgba(255, 255, 255, 0.87);
-  background-color: #151D27;
-
+  background-color: #151d27;
 }
 
 a {
@@ -29,4 +29,3 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-

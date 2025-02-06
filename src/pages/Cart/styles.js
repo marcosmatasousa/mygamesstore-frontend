@@ -45,7 +45,21 @@ const styles = {
     gap: "0.3vw",
     fontSize: "1vw",
     cursor: "pointer",
-    fontFamily: "Inter, Open Sans, Arial, Helvetica",
+  },
+  info: {
+    width: "35vw",
+    backgroundColor: "#263241",
+    borderRadius: 1,
+    fontSize: "0.70vw",
+    marginTop: "2vh",
+    display: "flex",
+    flexDirection: "column",
+    padding: "1.2vw 0vw",
+    title: {
+      fontSize: "0.75vw",
+      fontWeight: "bold",
+      marginLeft: "1vw",
+    },
   },
 };
 

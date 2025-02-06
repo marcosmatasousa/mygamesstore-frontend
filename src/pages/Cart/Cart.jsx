@@ -85,37 +85,58 @@ export default function Cart() {
       </Box>
 
       <Box component="section" sx={styles.cartContainer}>
-        <List sx={styles.cart}>
-          <ListItem sx={styles.item}>
-            <Typography variant="body2" sx={styles.product}>
-              PRODUTO
+        <Box>
+          <List sx={styles.cart}>
+            <ListItem sx={styles.item}>
+              <Typography variant="body2" sx={styles.product}>
+                PRODUTO
+              </Typography>
+              <ListItemIcon sx={styles.clear} onClick={handleClearCart}>
+                <CancelIcon sx={{ width: "1.5vw", height: "2.5vh" }} />
+                Limpar Carrinho
+              </ListItemIcon>
+            </ListItem>
+            <Divider />
+            {cart.map((item) => (
+              <CartItem
+                key={item._id}
+                name={item.name}
+                backgroundImage={item.background_image}
+                price={item.price}
+                id={item._id}
+                removeProduct={() => handleDeleteProduct(item._id)}
+              />
+            ))}
+            <Divider />
+            <ListItem sx={styles.item}>
+              <Typography variant="body2" sx={styles.product}>
+                SUBTOTAL
+              </Typography>
+              <Typography variant="body2" sx={styles.subtotal}>
+                $ {subtotal.toFixed(2)}
+              </Typography>
+            </ListItem>
+          </List>
+          <Box component="section" sx={styles.info}>
+            <Typography variant="body2" sx={styles.info.title}>
+              INFORMAÇÕES IMPORTANTES
             </Typography>
-            <ListItemIcon sx={styles.clear} onClick={handleClearCart}>
-              <CancelIcon sx={{ width: "1.5vw", height: "2.5vh" }} />
-              Limpar Carrinho
-            </ListItemIcon>
-          </ListItem>
-          <Divider />
-          {cart.map((item) => (
-            <CartItem
-              key={item._id}
-              name={item.name}
-              backgroundImage={item.background_image}
-              price={item.price}
-              id={item._id}
-              removeProduct={() => handleDeleteProduct(item._id)}
-            />
-          ))}
-          <Divider />
-          <ListItem sx={styles.item}>
-            <Typography variant="body2" sx={styles.product}>
-              SUBTOTAL
-            </Typography>
-            <Typography variant="body2" sx={styles.subtotal}>
-              $ {subtotal.toFixed(2)}
-            </Typography>
-          </ListItem>
-        </List>
+            <List sx={styles.cart}>
+              <ListItem>
+                • Esta aplicação foi desenvolvida apenas para fins de estudo e
+                prática.
+              </ListItem>
+              <ListItem>
+                • As formas de pagamento funcionam somente como uma ilustração
+                de um sistema de e-commerce.
+              </ListItem>
+              <ListItem>
+                • Ao clickar em &quot;Finalizar&quot;, nenhum dado pessoal é
+                capturado pela aplicação.
+              </ListItem>
+            </List>
+          </Box>
+        </Box>
         <PaymentMethods total={`$ ${subtotal.toFixed(2)}`} />
       </Box>
     </Box>
