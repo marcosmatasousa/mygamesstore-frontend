@@ -66,7 +66,7 @@ export default function Cart() {
   if (cart.length === 0) return <EmptyCart />;
 
   return (
-    <Box>
+    <Box sx={{ marginTop: "12vh" }}>
       <Box sx={styles.titleContainer}>
         <Typography sx={styles.titleContainer.typo} variant="h1">
           Meu carrinho
@@ -101,7 +101,9 @@ export default function Cart() {
               <CartItem
                 key={item._id}
                 name={item.name}
-                backgroundImage={item.background_image}
+                genres={item.genres}
+                imgUrl={item.background_image}
+                short_screenshots={item.short_screenshots}
                 price={item.price}
                 id={item._id}
                 removeProduct={() => handleDeleteProduct(item._id)}

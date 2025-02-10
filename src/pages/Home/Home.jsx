@@ -86,8 +86,11 @@ export default function Home({ addToCart }) {
           price={game.price}
           imgUrl={game.background_image}
           genres={game.genres}
+          short_screenshots={game.short_screenshots}
           productId={game._id}
+          releaseDate={game.released}
           addToCart={addToCart}
+          tags={game.tags}
           key={game._id}
         />
       );

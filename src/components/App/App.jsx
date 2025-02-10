@@ -9,8 +9,9 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useEffect, useState, useMemo } from "react";
-import Alert from "@mui/material/Alert";
+
 import Snackbar from "@mui/material/Snackbar";
+import Alert from '@mui/material/Alert';
 import { Box } from "@mui/material";
 
 import { getCartSizeAPI, addToCartAPI } from "../../utils/utils.js";
