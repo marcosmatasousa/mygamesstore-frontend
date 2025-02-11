@@ -1,6 +1,6 @@
 const styles = {
   outlet: {
-    marginTop: '12vh',
+    marginTop: '8vh',
   },
 };
 

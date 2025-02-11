@@ -1,26 +1,31 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Card from '@mui/material/Card';
-import Box from '@mui/material/Box';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Card from "@mui/material/Card";
+import Box from "@mui/material/Box";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Chip from "@mui/material/Chip";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-import { Link } from 'react-router-dom';
+import AddToCartButton from "../AddToCartButton/AddToCartButton.jsx";
 
-import styles from './styles.js';
+import { Link } from "react-router-dom";
+
+import styles from "./styles.js";
 
 export default function Product({
   name,
+  releaseDate,
   price,
   imgUrl,
   genres,
   productId,
   addToCart,
+  short_screenshots,
+  tags,
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -37,17 +42,26 @@ export default function Product({
 
   return (
     <Card sx={styles.card}>
-      <Link to={`/products/${name}`}>
+      <Link
+        to={`/products/${name}`}
+        state={{
+          imgUrl,
+          short_screenshots,
+          genres,
+          price,
+          productId,
+          releaseDate,
+          tags,
+        }}
+      >
         <CardMedia
           component="img"
           image={imgUrl}
           alt={name}
-          loading="lazy"
           sx={styles.cardMedia}
         />
-      </Link>
-      <CardContent sx={styles.cardContent}>
-        <Link to={`/products/${name}`}>
+
+        <CardContent sx={styles.cardContent}>
           <Typography
             gutterBottom
             variant="h5"
@@ -56,26 +70,16 @@ export default function Product({
           >
             {name}
           </Typography>
-        </Link>
-        <Box sx={styles.cardContent.box}>{displayGenres}</Box>
-      </CardContent>
+
+          <Box sx={styles.cardContent.box}>{displayGenres}</Box>
+        </CardContent>
+      </Link>
       <CardActions sx={styles.cardActions}>
-        <Button
-          sx={styles.cardActions.button}
-          size="large"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={() => addToCart(productId)}
-        >
-          {isHovered ? (
-            <>
-              <ShoppingCartIcon sx={styles.cardActions.button.cart} />
-              {`U$D ${price}`}
-            </>
-          ) : (
-            <>{`U$D ${price}`}</>
-          )}
-        </Button>
+        <AddToCartButton
+          productId={productId}
+          price={price}
+          addToCart={addToCart}
+        />
       </CardActions>
     </Card>
   );

@@ -6,40 +6,55 @@ import styles from "./styles.js";
 
 export default function CartItem({
   name,
-  backgroundImage,
+  releaseDate,
+  tags,
+  imgUrl,
   price,
-  id,
+  productId,
   removeProduct,
+  short_screenshots,
+  genres,
 }) {
   return (
     <>
       <ListItem sx={styles.item}>
-        <Box sx={styles.game}>
-          <Link to={`/products/${name}`}>
+        <Link
+          to={`/products/${name}`}
+          state={{
+            imgUrl,
+            short_screenshots,
+            genres,
+            price,
+            productId,
+            releaseDate,
+            tags,
+          }}
+        >
+          <Box sx={styles.game}>
             <Box
               sx={styles.game.image}
               component="img"
               alt="game image"
-              src={backgroundImage}
+              src={imgUrl}
             />
-          </Link>
-          <Box sx={styles.game.description}>
-            <Link to={`/products/${name}`}>
+
+            <Box sx={styles.game.description}>
               <Typography variant="body1" sx={styles.product}>
                 {name}
               </Typography>
-            </Link>
-            <Typography variant="body2" sx={styles.game.activation}>
-              Chave de ativação
-            </Typography>
+
+              <Typography variant="body2" sx={styles.game.activation}>
+                Chave de ativação
+              </Typography>
+            </Box>
           </Box>
-        </Box>
+        </Link>
         <Box sx={styles.game.price}>
           <Typography
             variant="body2"
             sx={styles.game.price}
           >{`$ ${price}`}</Typography>
-          <IconButton onClick={() => removeProduct(id)}>
+          <IconButton onClick={() => removeProduct(productId)}>
             <DeleteIcon sx={{ color: "white", width: "2vw", height: "3vh" }} />
           </IconButton>
         </Box>

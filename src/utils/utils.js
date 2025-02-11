@@ -7,7 +7,6 @@ export async function fetchGamesAPI(page, searchTerm = "", itemsPerPage = 12) {
       : `${API_URL}/games?page=${page}&count=${itemsPerPage}`;
 
   try {
-    console.log(API_URL);
     const response = await fetch(URL, { credentials: "include" });
     return await response.json();
   } catch (err) {
@@ -30,7 +29,6 @@ export async function fetchGamesCountAPI() {
 
 export async function getCartSizeAPI() {
   try {
-    console.log("chamou eu");
     const request = new Request(`${API_URL}/cart/count`, {
       method: "GET",
       credentials: "include",
