@@ -1,5 +1,5 @@
 export const backgroundStyle = (imageUrl) => ({
-  background: `linear-gradient(to top, #151d27 0%, rgba(21, 29, 39, 1) 50%, rgba(21, 29, 39, 0.5) 100%), url('${imageUrl}')`,
+  background: `linear-gradient(to top, #151d27 0%, rgba(21, 29, 39, 1) 40%, rgba(21, 29, 39, 0.5) 100%), url('${imageUrl}')`,
   backgroundSize: "100% 100%, cover",
   backgroundRepeat: "no-repeat, no-repeat",
   backgroundPosition: "center, center",
@@ -13,7 +13,7 @@ export const backgroundStyle = (imageUrl) => ({
 export const styles = {
   container: {
     width: "70vw",
-    marginTop: "9vh",
+    marginTop: "17vh",
     display: "flex",
     flexDirection: "column",
     gap: "2vw",

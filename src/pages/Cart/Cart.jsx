@@ -27,8 +27,6 @@ export default function Cart() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log(cart);
-
   useEffect(() => {
     const fetchCart = async () => {
       try {
@@ -49,8 +47,10 @@ export default function Cart() {
   );
 
   const handleClearCart = async () => {
+    setLoading(true);
     await removeAllProductsAPI();
     setCart([]);
+    setLoading(false);
   };
 
   function handleDeleteProduct(productId) {
@@ -61,7 +61,7 @@ export default function Cart() {
     removeProductAPI(productId);
   }
 
-  if (loading) return <CircularProgress />;
+  if (loading) return <CircularProgress sx={{ marginTop: "15vh" }} />;
 
   if (cart.length === 0) return <EmptyCart />;
 

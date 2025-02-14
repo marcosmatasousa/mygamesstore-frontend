@@ -7,6 +7,8 @@ import { useLocation, useParams } from "react-router-dom";
 
 import AddToCartButton from "../../components/AddToCartButton/AddToCartButton";
 
+
+
 import { addToCartAPI } from "../../utils/utils";
 
 export default function ProductPage() {

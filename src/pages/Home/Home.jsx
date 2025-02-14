@@ -14,8 +14,8 @@ export default function Home({ addToCart }) {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [counter, setCounter] = useState(0);
-  const { pageNumber } = useParams();
-  const [currentPage, setCurrentPage] = useState(Number(pageNumber) || 1);
+  const { page } = useParams();
+  const currentPage = page ? parseInt(page, 10) : 1;
 
   useEffect(() => {
     async function fetchGamesCount() {
@@ -35,10 +35,6 @@ export default function Home({ addToCart }) {
     window.location.href = `/${newPage}`;
     setLoading(false);
   }
-
-  useEffect(() => {
-    setCurrentPage(Number(pageNumber) || 1);
-  }, [pageNumber]);
 
   useEffect(() => {
     async function fetchGames() {
