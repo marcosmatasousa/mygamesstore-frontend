@@ -1,20 +1,15 @@
-import Home from "../../pages/Home/Home.jsx";
-import Layout from "../Layout/Layout.jsx";
-import ProductPage from "../../pages/ProductPage/ProductPage.jsx";
-import Cart from "../../pages/Cart/Cart.jsx";
-import SearchPage from "../../pages/SearchPage/SearchPage.jsx";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Navigate,
-} from "react-router-dom";
-import { useEffect, useState, useMemo } from "react";
+import Header from "../Header/Header.jsx";
+import { Routes, Route } from "react-router-dom";
+import { useEffect, useState, Suspense } from "react";
+import { appRoutes } from "../../routes.js";
 
 import Snackbar from "@mui/material/Snackbar";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
 import { Box } from "@mui/material";
 
 import { getCartSizeAPI, addToCartAPI } from "../../utils/utils.js";
+
+import { CircularProgress } from "@mui/material";
 
 export default function App() {
   const [cartSize, setCartSize] = useState(0);
@@ -31,7 +26,7 @@ export default function App() {
     }
 
     getCartSize();
-  }, []);
+  }, [cartSize]);
 
   async function addToCart(productId) {
     try {
@@ -46,24 +41,34 @@ export default function App() {
     }
   }
 
-  const routes = useMemo(() => {
-    return createBrowserRouter([
-      {
-        path: "/",
-        element: <Layout cartSize={cartSize} />,
-        children: [
-          { path: "/", element: <Navigate to="/1" /> },
-          {
-            path: "search/:searchTerm/:pageNumber",
-            element: <SearchPage addToCart={addToCart} />,
-          },
-          { path: ":pageNumber", element: <Home addToCart={addToCart} /> },
-          { path: "products/:gameTitle", element: <ProductPage /> },
-          { path: "/cart", element: <Cart /> },
-        ],
-      },
-    ]);
-  }, [cartSize]);
+  // const routes = useMemo(() => {
+  //   return createBrowserRouter([
+  //     {
+  //       path: "/",
+  //       element: <Layout cartSize={cartSize} />,
+  //       children: [
+  //         { path: "/", element: <Navigate to="/1" /> },
+  //         {
+  //           path: "search/:searchTerm/:pageNumber",
+  //           element: <SearchPage addToCart={addToCart} />,
+  //         },
+  //         { path: ":pageNumber", element: <Home addToCart={addToCart} /> },
+  //         { path: "products/:gameTitle", element: <ProductPage /> },
+  //         { path: "/cart", element: <Cart /> },
+  //       ],
+  //     },
+  //   ]);
+  // }, [cartSize]);
+
+  const routes = appRoutes.map((route) => {
+    return (
+      <Route
+        key={route.path}
+        path={route.path}
+        element={<route.component cartSize={cartSize} addToCart={addToCart} />}
+      />
+    );
+  });
 
   return (
     <Box>
@@ -79,7 +84,10 @@ export default function App() {
           </Alert>
         </Snackbar>
       )}
-      <RouterProvider router={routes} />
+      <Header cartSize={cartSize} />
+      <Suspense fallback={() => <CircularProgress />}>
+        <Routes>{routes}</Routes>
+      </Suspense>
     </Box>
   );
 }

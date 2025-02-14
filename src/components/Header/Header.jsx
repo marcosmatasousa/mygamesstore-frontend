@@ -3,13 +3,14 @@ import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import Badge from "@mui/material/Badge";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "./Header.css";
 import styles from "./styles.js";
 import PropTypes from "prop-types";
 
-export default function Header({ cartSize, isCart }) {
+export default function Header({ cartSize }) {
+  const { pathname } = useLocation();
   return (
     <AppBar sx={styles.appbar}>
       <Box sx={styles.container}>
@@ -25,7 +26,7 @@ export default function Header({ cartSize, isCart }) {
           </Box>
         </Link>
         <Box sx={styles.cartAvatar}>
-          {isCart !== "/cart" && (
+          {pathname !== "/cart" && (
             <Link to="/cart">
               <IconButton>
                 <Badge
